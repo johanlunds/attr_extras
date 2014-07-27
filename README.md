@@ -69,7 +69,7 @@ attr_private :foo, :bar
 The `attr_initialize` notation for hash arguments is also supported: `pattr_initialize :foo, [:bar, :baz!]`
 
 
-### `vattr_initialize :foo, :bar`. (alternative namings: `attr_for_value_object_and_initializer`)
+### `vattr_initialize :foo, :bar`. (alternative namings: `attr_for_value_object_and_initializer`, `attr_value_object_and_initializer`, `attr_initializer_and_value_object`)
 
 Defines initializer, public readers and value object identity: shortcut for
 
@@ -81,7 +81,7 @@ attr_value :foo, :bar
 The `attr_initialize` notation for hash arguments is also supported: `vattr_initialize :foo, [:bar, :baz!]`
 
 
-### `method_object :fooable?, :foo`<br>
+### `method_object :fooable?, :foo`. Good. (Mnemonic rule: argument order is same as order of "method" and "object" in method-name)
 
 Defines a `.fooable?` class method that takes arguments (`foo`) and delegates to an instance method that can access those arguments as private readers.
 
