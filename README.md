@@ -36,7 +36,7 @@ Also provides conveniences for creating value objects, method objects, query met
 ## Usage
 
 
-### `attr_initializer :foo, :bar`. Alternative: `attr_initialize_method`
+### `attr_initializer :foo, :bar`. Alternative: `attr_initialize_method`. Rationale for change: I'm not very opposed to the current name, but I think this is more clear. The previous one sounds like it will take some action when you call the metod ("what does it initialize the value to?" I have myself asking). This one is more obvious that it does something regarding the initializer of the class (or constructor if you will, but that's a name Ruby doesn't use).
 
 Defines an initializer that takes two arguments and assigns `@foo` and `@bar`.
 
@@ -45,19 +45,19 @@ Defines an initializer that takes two arguments and assigns `@foo` and `@bar`.
 `attr_initialize [:bar, :baz!]` defines an initializer that takes one hash argument, assigning `@bar` (optional) and `@baz` (required).
 
 
-### `attr_private_reader :foo, :bar`. other suggestions: `pattr_reader :foo, :bar` (and more methods can be added if of any use: `pattr_accessors`, `pattr_writer`)
+### `attr_private_reader :foo, :bar`. other suggestions: `pattr_reader :foo, :bar` (and more methods can be added if of any use: `pattr_accessors`, `pattr_writer`). Rationale for change: It's very unclear from the current method name `attr_private` that it only declares a writer. I wouldn't have guessed that...
 
 Defines private readers for `@foo` and `@bar`.
 
 
-### `attr_value_object :foo, :bar` (other suggestions: `attr_as_value_object`, `attr_for_value_object`)
+### `attr_value_object :foo, :bar` (other suggestions: `attr_as_value_object`, `attr_for_value_object`). Rationale for change: Good to have full name of design pattern in name.
 
 Defines public readers. Does not define writers, as [value objects](http://en.wikipedia.org/wiki/Value_object) are typically immutable.
 
 Defines object equality: two value objects of the same class with the same values are equal.
 
 
-### `pattr_initialize :foo, :bar` (I don't have any other good ideas, I'm unsure about the current naming. I might like it. Alternative, more verbose: `attr_initialize_method_and_private_reader` which is not that good. `pattr_initializer_and_reader`, `attr_initializer_and_private_reader`)
+### `pattr_initialize :foo, :bar` (I'm unsure about the current naming. It's very unclear what it does the first time you see  it. However I don't have a single alternative I have decided on - instead I have several ideas. The downside is that they're longer. More verbose: `attr_initialize_method_and_private_reader` which is not that good. Other ideas that are shorter: `pattr_initializer_and_reader`, `attr_initializer_and_private_reader`. I like those names because they're more like Lego - they build upon the previous method names in the gem and you tuck on an `and_foo` to the declaration in your class as your needs change)
 
 Defines both initializer and private readers: shortcut for
 
@@ -69,7 +69,7 @@ attr_private :foo, :bar
 The `attr_initialize` notation for hash arguments is also supported: `pattr_initialize :foo, [:bar, :baz!]`
 
 
-### `vattr_initialize :foo, :bar`. (alternative namings: `attr_for_value_object_and_initializer`, `attr_value_object_and_initializer`, `attr_initializer_and_value_object`)
+### `vattr_initialize :foo, :bar`. (alternative namings: `attr_for_value_object_and_initializer`, `attr_value_object_and_initializer`, `attr_initializer_and_value_object`. Also see the previous method's comments and ideas. A "p" is good for "private", a "v" for value object is a bit more streching it.)
 
 Defines initializer, public readers and value object identity: shortcut for
 
