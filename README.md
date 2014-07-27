@@ -36,7 +36,7 @@ Also provides conveniences for creating value objects, method objects, query met
 ## Usage
 
 
-### `attr_initialize_method :foo, :bar`. Alternative: `attr_initializer`
+### `attr_initializer :foo, :bar`. Alternative: `attr_initialize_method`
 
 Defines an initializer that takes two arguments and assigns `@foo` and `@bar`.
 
@@ -45,19 +45,19 @@ Defines an initializer that takes two arguments and assigns `@foo` and `@bar`.
 `attr_initialize [:bar, :baz!]` defines an initializer that takes one hash argument, assigning `@bar` (optional) and `@baz` (required).
 
 
-### `attr_private_reader :foo, :bar`
+### `attr_private_reader :foo, :bar`. other suggestions: `pattr_reader :foo, :bar` (and more methods can be added if of any use: `pattr_accessors`, `pattr_writer`)
 
 Defines private readers for `@foo` and `@bar`.
 
 
-### `attr_for_value_object :foo, :bar` (other suggestions: `attr_as_value_object`, `attr_value_object`)
+### `attr_value_object :foo, :bar` (other suggestions: `attr_as_value_object`, `attr_for_value_object`)
 
 Defines public readers. Does not define writers, as [value objects](http://en.wikipedia.org/wiki/Value_object) are typically immutable.
 
 Defines object equality: two value objects of the same class with the same values are equal.
 
 
-### `pattr_initialize :foo, :bar` (I don't have any other good ideas, I'm unsure about the current naming. I might like it. Alternative, more verbose: `attr_initialize_method_and_private_reader` which is not that good)
+### `pattr_initialize :foo, :bar` (I don't have any other good ideas, I'm unsure about the current naming. I might like it. Alternative, more verbose: `attr_initialize_method_and_private_reader` which is not that good. `pattr_initializer_and_reader`, `attr_initializer_and_private_reader`)
 
 Defines both initializer and private readers: shortcut for
 
