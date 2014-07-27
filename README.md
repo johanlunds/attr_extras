@@ -36,7 +36,7 @@ Also provides conveniences for creating value objects, method objects, query met
 ## Usage
 
 
-### `attr_initialize :foo, :bar`
+### `attr_initialize_method :foo, :bar`. Alternative: `attr_initializer`
 
 Defines an initializer that takes two arguments and assigns `@foo` and `@bar`.
 
@@ -45,19 +45,19 @@ Defines an initializer that takes two arguments and assigns `@foo` and `@bar`.
 `attr_initialize [:bar, :baz!]` defines an initializer that takes one hash argument, assigning `@bar` (optional) and `@baz` (required).
 
 
-### `attr_private :foo, :bar`
+### `attr_private_reader :foo, :bar`
 
 Defines private readers for `@foo` and `@bar`.
 
 
-### `attr_value :foo, :bar`
+### `attr_for_value_object :foo, :bar` (other suggestions: `attr_as_value_object`, `attr_value_object`)
 
 Defines public readers. Does not define writers, as [value objects](http://en.wikipedia.org/wiki/Value_object) are typically immutable.
 
 Defines object equality: two value objects of the same class with the same values are equal.
 
 
-### `pattr_initialize :foo, :bar`
+### `pattr_initialize :foo, :bar` (I don't have any other good ideas, I'm unsure about the current naming. I might like it. Alternative, more verbose: `attr_initialize_method_and_private_reader` which is not that good)
 
 Defines both initializer and private readers: shortcut for
 
@@ -69,7 +69,7 @@ attr_private :foo, :bar
 The `attr_initialize` notation for hash arguments is also supported: `pattr_initialize :foo, [:bar, :baz!]`
 
 
-### `vattr_initialize :foo, :bar`
+### `vattr_initialize :foo, :bar`. (alternative namings: `attr_for_value_object_and_initializer`)
 
 Defines initializer, public readers and value object identity: shortcut for
 
@@ -132,16 +132,16 @@ The `attr_initialize` notation for hash arguments is also supported: `method_obj
 You don't have to specify readers if you don't want them: `method_object :fooable?` is also valid.
 
 
-### `attr_id_query :foo?, :bar?`<br>
+### `attr_id_query :foo?, :bar?`<br>. Good!
 
 Defines query methods like `foo?`, which is true if (and only if) `foo_id` is truthy. Goes well with Active Record.
 
 
-### `attr_query :foo?, :bar?`<br>
+### `attr_query :foo?, :bar?`<br>. Good!
 
 Defines query methods like `foo?`, which is true if (and only if) `foo` is truthy.
 
-### `attr_implement :foo, :bar`<br>
+### `attr_implement :foo, :bar`. Should be named `abstract_method` and `abstract_methods` - has nothing to do with attrs (?).
 
 Defines nullary (0-argument) methods `foo` and `bar` that raise e.g. `"Implement a 'foo()' method"`.
 
